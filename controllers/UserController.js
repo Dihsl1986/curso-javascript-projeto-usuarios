@@ -1,8 +1,9 @@
 class UserController{
 
-    constructor(formId, tableId){
+    constructor(formIdCreate, formIdUpdate, tableId){
 
-        this.formEl = document.getElementById(formId);
+        this.formEl = document.getElementById(formIdCreate);
+        this.formUpdateEl = document.getElementById(formIdUpdate);
         this.tableEl = document.getElementById(tableId);
 
         
@@ -14,6 +15,21 @@ class UserController{
     onEdit(){
         document.querySelector("#box-user-update .btn-cancel").addEventListener("click", e=>{
              this.showPanelCreate();
+        });
+
+        this.formUpdateEl.addEventListener("submit", event => {
+            
+             event.preventDefault();
+
+             let btn = this.formUpdateEl.querySelector("[type=submit]");
+            
+            btn.disabled = true;
+
+            let values = this.getValues(this.formUpdateEl);
+
+            console.log(values);
+
+
         })
     }
 
@@ -27,7 +43,7 @@ class UserController{
             
             btn.disabled = true;
 
-            let values = this.getValues();
+            let values = this.getValues(this.formEl);
 
             if (!values) return false;
 
@@ -97,12 +113,12 @@ class UserController{
     }
 
 
-    getValues(){
+    getValues(formEl){
 
         let user = {};
         let isValid = true;
         
-        [...this.formEl.elements].forEach(function(field, index){
+        [...formEl.elements].forEach(function(field, index){
 
             if (['name', 'email', 'password'].indexOf(field.name) > -1 && !field.value) {
 
