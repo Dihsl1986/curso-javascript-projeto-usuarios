@@ -51,6 +51,8 @@ class UserController {
 
                     user.loadFromJSON(result);
 
+                    user.save();
+
                     this.getTr(user, tr);
 
                     this.updateCount();
@@ -90,7 +92,7 @@ class UserController {
 
                     values.photo = content;
 
-                    this.insert(values);
+                    values.save();
 
                     this.addLine(values);
 
@@ -99,6 +101,7 @@ class UserController {
                     btn.disabled = false;
 
                 }, 
+
                 (e) => {
                     console.error(e)
                 }
@@ -195,11 +198,11 @@ class UserController {
 
     }
 
-    getusersStorage () {
+  getUsersStorage() {
 
         let users = [];
 
-        if (localStorage.getItem("users")) {
+        if(localStorage.getItem("users")) {
 
             users = JSON.parse(localStorage.getItem("users"));
 
@@ -211,9 +214,9 @@ class UserController {
 
     selectAll() {
        
-        let users = this.getusersStorage();
+        let users = this.getUsersStorage();
         
-        users.forEach(dataUser => {
+        users.forEach(dataUser=>{
 
             let user = new User();
 
@@ -225,7 +228,7 @@ class UserController {
 
     }
 
-    insert(data) {
+   /* insert(data) {
 
         let users = this.getUsersStorage();
 
@@ -234,7 +237,7 @@ class UserController {
         // sessionStorage.setItem("users", JSON.stringify(users));
         localStorage.setItem("users", JSON.stringify(users));
 
-    }
+    }*/
     
     addLine(dataUser) {
 
@@ -274,7 +277,7 @@ class UserController {
 
         tr.querySelector(".btn-delete").addEventListener("click", (e) => {
 
-            if(confirm("Deseja relamente excluir?")) {
+            if(confirm("Deseja realmente excluir?")) {
 
                 tr.remove();
 
