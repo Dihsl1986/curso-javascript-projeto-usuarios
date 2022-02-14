@@ -119,4 +119,14 @@ class User {
        
 
     }
+
+    remove(){
+        let users = User.getUsersStorage();
+
+        users.forEach((userData, index)=>{
+            if (this._id == userData._id) {
+                console.log(userData, index);
+            }
+        });
+    }
 }
