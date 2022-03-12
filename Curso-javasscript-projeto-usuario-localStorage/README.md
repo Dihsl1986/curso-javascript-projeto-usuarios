@@ -1,6 +1,3 @@
    # GerenciamentoDeUsuari
 
-
-   
-   Diego
-   
+Projeto da HCODE

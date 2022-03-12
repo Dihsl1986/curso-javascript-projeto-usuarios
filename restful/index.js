@@ -16,8 +16,8 @@ const expressValidator = require('express-validator');
 let app = express();
 
 //agora vamos user esse bodyParser dentro do express
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false, limit:'50mb' }));
+app.use(bodyParser.json({ limit:'50mb' }));
 
 app.use(expressValidator());
 //vamos invocar o consign pedindo para incluir a pasta routes
@@ -39,7 +39,7 @@ consign().include('routes').include('utils').into(app);
 // Mandamos fica ouvindo na porta 300
 //Mandamos ouvir em uma respectiva porta
 //o IP e arrow function do que el tem que executar
-app.listen(3000, '127.0.0.1', ()=>{
+app.listen(4000, '127.0.0.1', ()=>{
 
     console.log("Servidor esta rodando!!")
 

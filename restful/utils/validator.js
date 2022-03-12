@@ -2,8 +2,8 @@ module.exports = {
     
     user:(app, req, res) => {
 
-        req.assert('name', 'O nome é obrigatório.').notEmpty();
-        req.assert('email', 'O email esta invalido.').notEmpty().isEmail();
+        req.assert('_name', 'O nome é obrigatório.').notEmpty();
+        req.assert('_email', 'O email esta invalido.').notEmpty().isEmail();
 
         //Para validar esses erros criamos uma variavel chamada errors
         //Dentro do req solicitamos o valitationErrors
